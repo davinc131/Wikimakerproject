@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\lib\quill-1.3.6\.github\CONTRIBUTING.md" />
+    <None Include="wwwroot\lib\quill-1.3.6\.github\DEVELOPMENT.md" />
+    <None Include="wwwroot\lib\quill-1.3.6\.github\ISSUE_TEMPLATE.md" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.4.10" />
@@ -17,6 +23,12 @@
     <ProjectReference Include="..\DAOClassLibrary\DAOClassLibrary.csproj" />
     <ProjectReference Include="..\ModelClassLibrary\ModelClassLibrary.csproj" />
     <ProjectReference Include="..\UtilClassLibrary\UtilClassLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FreeTextBox">
+      <HintPath>..\..\..\..\Downloads\Free Text Box\Free Text Box - Control\Framework-4-0\FreeTextBox.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

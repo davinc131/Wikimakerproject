@@ -1,7 +1,12 @@
-﻿
+﻿@using FreeTextBoxControls
 @{
     ViewData["Title"] = "Editor";
 }
 
 <h2>Editor</h2>
 
+<FTB:FreeTextBox id="FreeTextBox1" ToolbarLayout="paragraphmenu,fontsizesmenu;bold,italic,underline|bulletedlist,numberedlist, JustifyLeft, JustifyRight, JustifyCenter, JustifyFull,  NumberedList, Indent, Outdent, Cut, Copy, Paste, Delete, Undo, Redo" runat="Server" Height="250px" Width="400px" />
+
+@section scripts{ 
+    <script src="~/lib/Trumbowyg-master/dist/trumbowyg.min.js"></script>
+}
