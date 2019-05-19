@@ -1,12 +1,99 @@
-﻿@using FreeTextBoxControls
+﻿@model ModelClassLibrary.Documento
 @{
     ViewData["Title"] = "Editor";
+
+    try
+    {
+        if (TempData["DocumentoVazio"].ToString() != null)
+        {
+            <div class="alert alert-warning">
+                <strong>Atenção!</strong> @TempData["DocumentoVazio"]
+            </div>
+        }
+
+        if (TempData["Sucesso"].ToString() != null)
+        {
+            <div class="alert alert-success">
+                <strong>Sucesso!</strong> @TempData["Sucesso"]
+            </div>
+        }
+
+        if (String.IsNullOrEmpty(TempData["Error"].ToString()))
+        {
+            <div class="alert alert-danger">
+                <strong>Error!</strong> @TempData["Error"]
+            </div>
+        }
+    }
+    catch
+    {
+
+    }
 }
 
-<h2>Editor</h2>
+<!--IMPORTS-->
+<link href="~/lib/Trumbowyg-master/dist/ui/trumbowyg.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.css">
 
-<FTB:FreeTextBox id="FreeTextBox1" ToolbarLayout="paragraphmenu,fontsizesmenu;bold,italic,underline|bulletedlist,numberedlist, JustifyLeft, JustifyRight, JustifyCenter, JustifyFull,  NumberedList, Indent, Outdent, Cut, Copy, Paste, Delete, Undo, Redo" runat="Server" Height="250px" Width="400px" />
+<h2 style="text-align: center; background-color:cadetblue">Editor</h2>
 
-@section scripts{ 
+<div>
+    <form asp-controller="Editor" asp-action="GravarDocumento">
+        <table style="width:100%">
+            <tr style="text-align: center">
+                <th style="width:15%">
+                    <label>Titulo</label>
+                </th>
+                <th style="width:85%">
+                    <input asp-for="Titulo" />
+                </th>
+            </tr>
+            <tr>
+                <th style="width:15%">
+                    Lista de documentos
+                </th>
+                <th>
+                    <textarea id="editor" asp-for="CorpoDocumento"></textarea>
+                </th>
+            </tr>
+            <tr>
+                <th></th>
+                <th style="text-align:center">
+                    <button type="submit" class="btn btn-default">Gravar Documento</button>
+                </th>
+            </tr>
+        </table>
+    </form>
+</div>
+
+@section scripts{
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="~/lib/Trumbowyg-master/dist/trumbowyg.min.js"></script>
+
+    <script src="trumbowyg/dist/plugins/upload/trumbowyg.cleanpaste.min.js"></script>
+    <script src="trumbowyg/dist/plugins/upload/trumbowyg.pasteimage.min.js"></script>
+
+    <script src="trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js"></script>
+    <script>
+
+        $('#editor').trumbowyg({
+            btns: [
+                ['viewHTML'],
+                ['undo', 'redo'], // Only supported in Blink browsers
+                ['formatting'],
+                ['strong', 'em', 'del'],
+                ['superscript', 'subscript'],
+                ['link'],
+                ['insertImage'],
+                ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                ['unorderedList', 'orderedList'],
+                ['horizontalRule'],
+                ['removeformat'],
+                ['fullscreen']
+            ]
+        });
+    </script>
 }

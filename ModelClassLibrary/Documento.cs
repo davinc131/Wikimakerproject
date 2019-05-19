@@ -18,5 +18,15 @@ namespace ModelClassLibrary
         public virtual List<ImagensDoc> ListImagensDocs { get; set; }
         public virtual List<Documento> DocumentoFilho { get; set; }
         public virtual Usuario Usuario { get; set; }
+
+        public Documento()
+        {
+            Titulo = "";
+            CorpoDocumento = "";
+            Datas = new List<DateTime>();
+            ListImagensDocs = new List<ImagensDoc>();
+            DocumentoFilho = new List<Documento>();
+            Usuario = new Usuario();
+        }
     }
 }

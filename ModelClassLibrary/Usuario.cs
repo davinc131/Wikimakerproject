@@ -16,5 +16,10 @@ namespace ModelClassLibrary
         public string NomeUsuario { get; set; }
         public string Senha { get; set; }
         public virtual List<Documento> Documentos { get; set; }
+
+        public Usuario()
+        {
+            Documentos = new List<Documento>();
+        }
     }
 }
