@@ -14,7 +14,8 @@ namespace ModelClassLibrary
         public int Id { get; set; }
         public string Titulo { get; set; }
         public string CorpoDocumento { get; set; }
-        public List<DateTime> Datas{ get; set; }
+        public bool Temporario { get; set; }
+        public List<DataDocumento> Datas{ get; set; }
         public virtual List<ImagensDoc> ListImagensDocs { get; set; }
         public virtual List<Documento> DocumentoFilho { get; set; }
         public virtual Usuario Usuario { get; set; }
@@ -23,7 +24,7 @@ namespace ModelClassLibrary
         {
             Titulo = "";
             CorpoDocumento = "";
-            Datas = new List<DateTime>();
+            Datas = new List<DataDocumento>();
             ListImagensDocs = new List<ImagensDoc>();
             DocumentoFilho = new List<Documento>();
             Usuario = new Usuario();
