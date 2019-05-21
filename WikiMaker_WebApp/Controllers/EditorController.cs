@@ -32,16 +32,27 @@ namespace WikiMaker_WebApp.Controllers
                 }
                 else
                 {
+                    UserPersist persist = new UserPersist();
+
+                    Usuario us = persist.ConsultarPorNome("davinc131");
+
+                    if (String.IsNullOrEmpty(us.NomeUsuario))
+                    {
+                        Usuario u = new Usuario { Nome = "Leonardo", Email = "davinc131@hotmail.com", NomeUsuario = "davinc131", Senha = "" };
+                        persist.SalvarUsuario(u);
+                    }
+
+                    us = persist.ListarPorParamentro("davinc131")[0];
+
                     TempData["Sucesso"] = "Documento salvo com sucesso!!!";
 
                     DateTime localDate = DateTime.Now;
-                    Documento d = new Documento();
-                    d.Titulo = doc.Titulo;
-                    d.CorpoDocumento = doc.CorpoDocumento;
-                    d.Datas.Add(new DataDocumento { GetDate = localDate });
+
+                    doc.Datas.Add(new DataDocumento { GetDate = localDate });
+                    doc.Temporario = false;
 
                     DocumentPersist p = new DocumentPersist();
-                    p.SalvarDocumento(d);
+                    p.SalvarDocumento(doc);
 
                     Thread.Sleep(5000);
                 }

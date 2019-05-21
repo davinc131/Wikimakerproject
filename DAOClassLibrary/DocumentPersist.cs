@@ -13,20 +13,25 @@ namespace DAOClassLibrary
         {
             using (WikiDbContext con = new WikiDbContext())
             {
-                if (documento.CorpoDocumento != null)
-                {
-                    int i = documento.Id;
-                    documento = null;
-                    documento = con.GetDocumentos.Find(i);
+                con.GetDocumentos.Add(documento);
+                con.SaveChanges();
 
-                    con.GetDocumentos.Add(documento);
-                    con.SaveChanges();
-                }
-                else
-                {
-                    con.GetDocumentos.Add(documento);
-                    con.SaveChanges();
-                }
+                //if (documento.CorpoDocumento.Equals(null) || documento.CorpoDocumento.Equals(""))
+                //{
+                //    int i = documento.Id;
+                //    documento = null;
+
+
+                //    documento = con.GetDocumentos.Find(i);
+
+                //    con.GetDocumentos.Add(documento);
+                //    con.SaveChanges();
+                //}
+                //else
+                //{
+                //    con.GetDocumentos.Add(documento);
+                //    con.SaveChanges();
+                //}
             }
         }
 

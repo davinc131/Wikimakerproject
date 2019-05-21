@@ -28,6 +28,7 @@ namespace ModelClassLibrary
             ListImagensDocs = new List<ImagensDoc>();
             DocumentoFilho = new List<Documento>();
             Usuario = new Usuario();
+            Temporario = false;
         }
     }
 }
