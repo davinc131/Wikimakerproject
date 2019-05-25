@@ -48,7 +48,7 @@ namespace DAOClassLibrary
         {
             using (WikiDbContext con = new WikiDbContext())
             { 
-                var Consulta = con.GetUsuarios.Include(d => d.Documentos).Single(d => d.NomeUsuario == nome);
+                var Consulta = con.GetUsuarios.Include(d => d.Documentos).SingleOrDefault(d => d.NomeUsuario == nome);
                 return Consulta;
             }
         }

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using ModelClassLibrary;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
-using MySql.Data.EntityFrameworkCore.Extensions;
+//using Pomelo.EntityFrameworkCore.MySql;
 
 namespace DAOClassLibrary
 {
