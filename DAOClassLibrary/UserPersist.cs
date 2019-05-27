@@ -13,25 +13,20 @@ namespace DAOClassLibrary
         {
             using (WikiDbContext con = new WikiDbContext())
             {
-                con.GetUsuarios.Add(Usuario);
-                con.SaveChanges();
 
-                //if (Usuario.CorpoUsuario.Equals(null) || Usuario.CorpoUsuario.Equals(""))
-                //{
-                //    int i = Usuario.Id;
-                //    Usuario = null;
+                Usuario us = ConsultarPorNome(Usuario.NomeUsuario);
 
-
-                //    Usuario = con.GetUsuarios.Find(i);
-
-                //    con.GetUsuarios.Add(Usuario);
-                //    con.SaveChanges();
-                //}
-                //else
-                //{
-                //    con.GetUsuarios.Add(Usuario);
-                //    con.SaveChanges();
-                //}
+                if (us == null)
+                {
+                    con.GetUsuarios.Add(Usuario);
+                    con.SaveChanges();
+                }
+                else
+                {
+                    us.Documentos = Usuario.Documentos;
+                    con.GetUsuarios.Update(us);
+                    con.SaveChanges();
+                }
             }
         }
 
@@ -39,7 +34,7 @@ namespace DAOClassLibrary
         {
             using (WikiDbContext con = new WikiDbContext())
             {
-                var Consulta = con.GetUsuarios.Include(d => d.Documentos).Single(d => d.Id == id);
+                var Consulta = con.GetUsuarios.Include(d => d.Documentos).SingleOrDefault(d => d.Id == id);
                 return Consulta;
             }
         }

@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DAOClassLibrary.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class CreateDataBase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +13,7 @@ namespace DAOClassLibrary.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Nome = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     NomeUsuario = table.Column<string>(nullable: true),
@@ -28,10 +29,10 @@ namespace DAOClassLibrary.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Titulo = table.Column<string>(nullable: true),
                     CorpoDocumento = table.Column<string>(nullable: true),
-                    Temporario = table.Column<short>(nullable: false),
+                    Temporario = table.Column<bool>(nullable: false),
                     UsuarioId = table.Column<int>(nullable: true),
                     Discriminator = table.Column<string>(nullable: false),
                     DocumentoId = table.Column<int>(nullable: true),
@@ -60,7 +61,7 @@ namespace DAOClassLibrary.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     GetDate = table.Column<DateTime>(nullable: false),
                     DocumentoId = table.Column<int>(nullable: true)
                 },
@@ -80,7 +81,7 @@ namespace DAOClassLibrary.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     NomeImagem = table.Column<string>(nullable: true),
                     CaminhoImagem = table.Column<string>(nullable: true),
                     ArrayByte = table.Column<byte[]>(nullable: true),

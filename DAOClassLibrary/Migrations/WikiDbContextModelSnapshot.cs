@@ -4,6 +4,7 @@ using DAOClassLibrary;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DAOClassLibrary.Migrations
 {
@@ -14,7 +15,9 @@ namespace DAOClassLibrary.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099");
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("ModelClassLibrary.DataDocumento", b =>
                 {
@@ -106,8 +109,6 @@ namespace DAOClassLibrary.Migrations
                     b.Property<int>("Aprovado");
 
                     b.Property<int>("IdDocOrigem");
-
-                    b.ToTable("DocTemporario");
 
                     b.HasDiscriminator().HasValue("DocTemporario");
                 });

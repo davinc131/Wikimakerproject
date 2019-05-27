@@ -5,18 +5,21 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DAOClassLibrary.Migrations
 {
     [DbContext(typeof(WikiDbContext))]
-    [Migration("20190520024216_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190527031132_CreateDataBase")]
+    partial class CreateDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099");
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("ModelClassLibrary.DataDocumento", b =>
                 {
@@ -108,8 +111,6 @@ namespace DAOClassLibrary.Migrations
                     b.Property<int>("Aprovado");
 
                     b.Property<int>("IdDocOrigem");
-
-                    b.ToTable("DocTemporario");
 
                     b.HasDiscriminator().HasValue("DocTemporario");
                 });

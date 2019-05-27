@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ModelClassLibrary;
 using System.Threading;
-using ModelClassLibrary;
 using DAOClassLibrary;
 
 namespace WikiMaker_WebApp.Controllers
@@ -38,8 +37,9 @@ namespace WikiMaker_WebApp.Controllers
 
                     if (us == null)
                     {
-                        Usuario u = new Usuario { Nome = "Leonardo", Email = "davinc131@hotmail.com", NomeUsuario = "davinc131", Senha = "" };
+                        Usuario u = new Usuario {Nome = "Leonardo", Email = "davinc131@hotmail.com", NomeUsuario = "davinc131", Senha = "" };
                         persist.SalvarUsuario(u);
+                        persist = new UserPersist();
                         us = persist.ConsultarPorNome(us.NomeUsuario);
                     }
 
@@ -47,10 +47,13 @@ namespace WikiMaker_WebApp.Controllers
 
                     doc.Datas.Add(new DataDocumento { GetDate = localDate });
                     doc.Temporario = false;
-                    doc.Usuario = us;
+                    us.Documentos.Add(doc);
 
-                    DocumentPersist p = new DocumentPersist();
-                    p.SalvarDocumento(doc);
+                    persist = new UserPersist();
+                    persist.SalvarUsuario(us);
+
+                    //DocumentPersist p = new DocumentPersist();
+                    //p.SalvarDocumento(doc);
 
                     Thread.Sleep(5000);
                     TempData["Sucesso"] = "Documento salvo com sucesso!!!";
