@@ -35,5 +35,10 @@ namespace ModelClassLibrary
             Usuario = new Usuario();
             Temporario = false;
         }
+
+        public override string ToString()
+        {
+            return Titulo;
+        }
     }
 }
