@@ -26,10 +26,10 @@
 
 					if(id.indexOf('-') != -1){
 						id = id.split("-")[1]
-					}
+                    }
 
-					postedItens.push({
-						text: data.instance.get_node(data.selected[i].text), id: id, parent: data.node.parent[0]
+                    postedItens.push({
+                        text: data.instance.get_node(data.selected[i].text), id: id, parent: data.node.parents[0]
 					});
 				}
 				$('#selectedItens').val(JSON.stringify(postedItens));
@@ -38,7 +38,7 @@
 					"themes":{
 							"variant": "large"
 						},
-						"data":@Html.Raw(ViewBag.Json)
+						"data": @Html.Raw(ViewBag.Json)
 				},
 				"checkbox":{
 					"keep_selected_style": false

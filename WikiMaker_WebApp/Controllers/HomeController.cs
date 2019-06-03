@@ -18,7 +18,20 @@ namespace WikiMaker_WebApp.Controllers
         public IActionResult Index()
         {
             CarregarLista();
-            ViewBag.Json = JsonConvert.SerializeObject(documentos);
+
+            List<JsTreeDocument> nodes = new List<JsTreeDocument>();
+
+            for(int i = 0; i < documentos.Count; i++)
+            {
+                nodes.Add(new JsTreeDocument { id = documentos[i].Id.ToString(), parent = "#", text = documentos[i].Titulo });
+
+                for(int j = 0; j < documentos[i].DocumentoFilho.Count; j++)
+                {
+                    nodes.Add(new JsTreeDocument { id = documentos[i].Id.ToString() + "-" + documentos[i].DocumentoFilho[j].Id.ToString(), parent = documentos[i].Id.ToString(), text = documentos[i].DocumentoFilho[j].Titulo });
+                }
+            }
+
+            ViewBag.Json = JsonConvert.SerializeObject(nodes);
             return View();
         }
         [HttpPost]
@@ -65,6 +78,7 @@ namespace WikiMaker_WebApp.Controllers
                 for(int i = 0; i < 5; i++)
                 {
                     Documento d = new Documento();
+                    d.Id = i;
                     d.Titulo = "Documento" + i;
                     d.CorpoDocumento = "Um texto qualquer";
 
@@ -76,6 +90,7 @@ namespace WikiMaker_WebApp.Controllers
                     for(int j = 0; j < 5; j++)
                     {
                         Documento d = new Documento();
+                        d.Id = j;
                         d.Titulo = "Documento Filho" + j;
                         d.CorpoDocumento = "Um texto qualquer";
 
